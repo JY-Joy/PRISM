@@ -199,10 +199,24 @@
         <h3 class="title is-4">Superior Generalization</h3>
         <div class="content has-text-justified">
           <p>
-            PRISM demonstrates superior generalization to out-of-distribution prompt lengths,
-            outperforming baseline models by 7.4% on prompts over 500 tokens in challenging benchmarks.
+            PRISM demonstrates superior generalization to out-of-distribution prompt lengths.
+            Unlike fine-tuning approaches that degrade performance on longer prompts beyond their training distribution,
+            PRISM's compositional nature enables it to handle arbitrarily long inputs.
+          </p>
+          <p>
+            In our experiments, PRISM consistently outperforms baseline models across all prompt length ranges,
+            with particularly strong gains on challenging long prompts—achieving 7.4% improvement on prompts over 500 tokens.
+            This generalization capability stems from decomposing long inputs into semantic components that
+            pre-trained T2I models can process effectively, regardless of total input length.
           </p>
         </div>
+        <div style="text-align: center;">
+          <img src="./static/images/token_ablation.pdf"
+               class="interpolation-image"
+               style="max-width: 80%; height: auto; display: block; margin: 0 auto;"/>
+          <p style="text-align: center;">Performance across different prompt lengths</p>
+        </div>
+        <br/>
 
         <h3 class="title is-4">Multi-Model Compatibility</h3>
         <div class="content has-text-justified">
