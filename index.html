@@ -138,17 +138,22 @@
 <section class="section">
   <div class="container is-max-desktop">
 
-    <!-- Method overview. -->
+    <!-- Motivation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Method</h2>
+        <h2 class="title is-3">Motivation</h2>
 
         <div class="content has-text-justified">
           <p>
-            PRISM achieves long-text-to-image generation by reframing it as a compositional task.
-            Rather than training a monolithic model to interpret an entire paragraph, we decompose the
-            paragraph into a set of components that a pre-trained T2I model can readily understand.
-            The final image is synthesized by composing the model's outputs for each component.
+            Modern text-to-image models are trained on concise captions, limiting their ability to
+            process long descriptive paragraphs. Simply fine-tuning on longer prompts fails to
+            generalize to unseen prompt lengths.
+          </p>
+          <p>
+            PRISM addresses this by reframing long-text-to-image generation as a compositional task.
+            Rather than training a monolithic model to interpret an entire paragraph, we decompose
+            the input into semantic components that pre-trained T2I models can readily understand,
+            then compose their outputs to synthesize the final image.
           </p>
         </div>
           <div style="text-align: center;">
@@ -160,7 +165,7 @@
         <br/>
       </div>
     </div>
-    <!--/ Method overview. -->
+    <!--/ Motivation. -->
 
     <!-- Architecture. -->
     <div class="columns is-centered">
