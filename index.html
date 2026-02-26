@@ -1,163 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRISM: Prompt Refraction for Intricate Scene Modeling</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PRISM: Long-Text-to-Image Generation via Compositional Prompt Decomposition">
+  <meta name="keywords" content="Text-to-Image, Diffusion Models, Long Prompts, Compositional Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRISM: Long-Text-to-Image Generation via Compositional Prompt Decomposition</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicon.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://kit.fontawesome.com/97d7515187.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>PRISM</h1>
-            <p class="subtitle">Prompt Refraction for Intricate Scene Modeling</p>
-            <p class="authors">
-                <a href="https://scholar.google.com/citations?user=SOME_ID" target="_blank">Jen-Yuan Huang</a>,
-                <a href="https://scholar.google.com/citations?user=SOME_ID" target="_blank">Tong Lin</a>,
-                <a href="https://scholar.google.com/citations?user=SOME_ID" target="_blank">Yilun Du</a>
-            </p>
-            <p class="affiliations">
-                Peking University, Harvard University
-            </p>
-            <div class="badges">
-                <a href="https://openreview.net/forum?id=PRISM_ICLR2026" target="_blank" class="badge">
-                    <img src="https://img.shields.io/badge/ICLR-2026-blue" alt="ICLR 2026">
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PRISM: Long-Text-to-Image Generation via Compositional Prompt Decomposition</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jy-joy.github.io">Jen-Yuan Huang</a><sup>1&nbsp;2</sup>,</span>
+            <span class="author-block">
+              <a>Tong Lin</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=YilunDu">Yilun Du</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University&nbsp;</span>
+            <span class="author-block"><sup>2</sup>Harvard University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link -->
+              <span class="link-block">
+                <a href="https://openreview.net/forum?id=PRISM_ICLR2026"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-openreview"></i>
+                  </span>
+                  <span>Paper</span>
                 </a>
-                <a href="https://github.com/JY-Joy/PRISM" target="_blank" class="badge">
-                    <img src="https://img.shields.io/badge/code-GitHub-black" alt="Code">
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <a href="https://github.com/JY-Joy/PRISM"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa-brands fa-github"></i>
+                  </span>
+                  <span>Code</span>
                 </a>
+              </span>
+              <!-- Model Link -->
+              <span class="link-block">
+                <a href="https://github.com/JY-Joy/PRISM#inference"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa-solid fa-cloud-arrow-down"></i>
+                  </span>
+                  <span>Inference</span>
+                </a>
+              </span>
             </div>
-        </header>
 
-        <!-- Abstract -->
-        <section class="abstract">
-            <h2>Abstract</h2>
-            <p>
-                While modern text-to-image (T2I) models excel at generating images from intricate prompts,
-                they struggle to capture the key details when the inputs are descriptive paragraphs.
-                We propose <strong>PRISM</strong>, a compositional approach that enables pre-trained T2I models
-                to process long sequence inputs by decomposing them into semantic components.
-            </p>
-            <p>
-                PRISM demonstrates superior generalization, outperforming baseline models by 7.4% on
-                prompts over 500 tokens in challenging benchmarks.
-            </p>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Method -->
-        <section class="method">
-            <h2>Method Overview</h2>
-            <div class="method-content">
-                <p>
-                    Instead of forcing pre-trained T2I models to process out-of-distribution long sequences,
-                    PRISM reframes long-text-to-image generation as a <strong>compositional task</strong>:
-                </p>
-                <ul>
-                    <li><strong>Decompose</strong> long prompts into semantic components using a lightweight module</li>
-                    <li><strong>Generate</strong> independent noise predictions for each component</li>
-                    <li><strong>Compose</strong> outputs using energy-based conjunction into a single image</li>
-                </ul>
-            </div>
-        </section>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br/>
+      <h2 class="subtitle has-text-centered">
+        PRISM decomposes long descriptive paragraphs into semantic components, enabling pre-trained T2I models to render intricate scenes with superior generalization.
+      </h2>
+    </div>
+  </div>
+</section>
 
-        <!-- Key Features -->
-        <section class="features">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <h3>🎨 Multiple Model Support</h3>
-                    <p>Compatible with SD1.5, SD3, Flux, and Qwen-Image models</p>
-                </div>
-                <div class="feature">
-                    <h3>⚡ Efficient Training</h3>
-                    <p>Uses LoRA adapters for lightweight fine-tuning</p>
-                </div>
-                <div class="feature">
-                    <h3>🔬 Compositional</h3>
-                    <p>Decomposes prompts into learnable semantic components</p>
-                </div>
-                <div class="feature">
-                    <h3>🚀 Superior Generalization</h3>
-                    <p>Outperforms baselines on ultra-long prompts (>500 tokens)</p>
-                </div>
-            </div>
-        </section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            While modern text-to-image (T2I) models excel at generating images from intricate prompts,
+            they struggle to capture the key details when the inputs are descriptive paragraphs.
+            This limitation stems from the prevalence of concise captions that shape their training distribution.
+          </p>
+          <p>
+            We propose <strong>PRISM</strong>, a compositional approach that enables pre-trained T2I models
+            to process long sequence inputs. PRISM uses a lightweight module to extract constituent
+            representations from the long prompts. The T2I model makes independent noise predictions
+            for each component, and their outputs are merged into a single denoising step using energy-based conjunction.
+          </p>
+          <p>
+            We evaluate PRISM across a wide range of model architectures, demonstrating comparable
+            performances to models fine-tuned on the same training data. Furthermore, PRISM demonstrates
+            superior generalization, outperforming baseline models by 7.4% on prompts over 500 tokens.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
 
-        <!-- Results -->
-        <section class="results">
-            <h2>Results</h2>
-            <div class="result-stats">
-                <div class="stat">
-                    <span class="number">+7.4%</span>
-                    <span class="label">Better on >500 token prompts</span>
-                </div>
-                <div class="stat">
-                    <span class="number">4</span>
-                    <span class="label">Model architectures tested</span>
-                </div>
-                <div class="stat">
-                    <span class="number">284.9</span>
-                    <span class="label">Avg tokens in benchmark</span>
-                </div>
-            </div>
-        </section>
+<section class="section">
+  <div class="container is-max-desktop">
 
-        <!-- Code -->
-        <section class="code">
-            <h2>Code & Usage</h2>
-            <p>
-                The code is available on <a href="https://github.com/JY-Joy/PRISM" target="_blank">GitHub</a>.
-            </p>
-            <h3>Quick Start</h3>
-            <pre><code># Clone the repository
-git clone https://github.com/JY-Joy/PRISM.git
-cd PRISM
+    <!-- Method overview. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
 
-# Install dependencies
-pip install -r requirements.txt
+        <div class="content has-text-justified">
+          <p>
+            PRISM achieves long-text-to-image generation by reframing it as a compositional task.
+            Rather than training a monolithic model to interpret an entire paragraph, we decompose the
+            paragraph into a set of components that a pre-trained T2I model can readily understand.
+            The final image is synthesized by composing the model's outputs for each component.
+          </p>
+        </div>
+          <div style="text-align: center;">
+            <img src="./static/images/motivation.pdf"
+                 class="interpolation-image"
+                 style="max-width: 90%; height: auto; display: block; margin: 0 auto;"/>
+            <p style="text-align: center;">Compositional Long Prompt Decomposition</p>
+          </div>
+        <br/>
+      </div>
+    </div>
+    <!--/ Method overview. -->
 
-# Run inference
-python sample_pipeline.py \
-  --ckpt /path/to/checkpoint \
-  --prompt "Your detailed prompt here..."</code></pre>
-        </section>
+    <!-- Architecture. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Architecture</h2>
 
-        <!-- Citation -->
-        <section class="citation">
-            <h2>Citation</h2>
-            <pre><code>@inproceedings{huang2026prism,
+        <div class="content has-text-justified">
+          <p>
+            PRISM consists of three main components: (1) a lightweight decomposition module that learns
+            to extract constituent representations from long-prompt encodings; (2) multiple independent
+            noise predictions for each component; and (3) energy-based conjunction to merge outputs into
+            a single noise prediction for coherent scene rendering.
+          </p>
+        </div>
+        <div style="text-align: center;">
+          <img src="./static/images/architecture.pdf"
+               class="interpolation-image"
+               style="max-width: 90%; height: auto; display: block; margin: 0 auto;"/>
+          <p style="text-align: center;">PRISM Architecture Overview</p>
+        </div>
+        <br/>
+      </div>
+    </div>
+    <!--/ Architecture. -->
+
+    <!-- Key Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <h3 class="title is-4">Superior Generalization</h3>
+        <div class="content has-text-justified">
+          <p>
+            PRISM demonstrates superior generalization to out-of-distribution prompt lengths,
+            outperforming baseline models by 7.4% on prompts over 500 tokens in challenging benchmarks.
+          </p>
+        </div>
+
+        <h3 class="title is-4">Multi-Model Compatibility</h3>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate PRISM across multiple model architectures (SD1.5, SD3, Flux, Qwen-Image),
+            demonstrating consistent performance improvements without requiring model-specific fine-tuning.
+          </p>
+        </div>
+
+        <br/>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="Acknowledgment"></section>
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgment</h2>
+    <p>
+      We thank the anonymous reviewers for their valuable feedback.
+    </p>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{huang2026prism,
   title={Long-Text-to-Image Generation via Compositional Prompt Decomposition},
   author={Huang, Jen-Yuan and Lin, Tong and Du, Yilun},
   booktitle={International Conference on Learning Representations (ICLR)},
   year={2026}
 }</code></pre>
-            <button onclick="copyBibtex()" class="btn">Copy BibTeX</button>
-        </section>
+  </div>
+</section>
 
-        <!-- Links -->
-        <section class="links">
-            <h2>Links</h2>
-            <div class="link-grid">
-                <a href="https://openreview.net/forum?id=PRISM_ICLR2026" target="_blank">📄 Paper</a>
-                <a href="https://github.com/JY-Joy/PRISM" target="_blank">💻 Code</a>
-                <a href="https://github.com/JY-Joy/PRISM/blob/main/README.md" target="_blank">📖 Documentation</a>
-            </div>
-        </section>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2026 PRISM Team. All rights reserved.</p>
-        </footer>
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="display: inline-flex; align-items: center; justify-content: center; text-align: center;">
+            Website template from <a class="icon-link" href="https://github.com/nerfies/nerfies.github.io" class="external-link" disabled>
+              <i class="fab fa-github" style="margin-left: 8px;"></i>
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+</footer>
 
-    <script>
-        function copyBibtex() {
-            const code = document.querySelector('.citation pre code').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                alert('BibTeX copied to clipboard!');
-            });
-        }
-    </script>
 </body>
 </html>
