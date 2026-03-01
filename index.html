@@ -100,10 +100,10 @@
           <span class="highlight-sentence" data-quarter="0">The image presents a 3D rendering of a horse, captured in a profile view.</span> <span class="highlight-sentence" data-quarter="1">The horse is depicted in a state of motion, with its mane and tail flowing behind it.</span> The horse's body is composed of a network of lines and curves, suggesting a complex mechanical structure. This intricate design is further emphasized by the presence of gears and other mechanical components, which are integrated into the horse's body. The background of the image is a dark blue, providing a stark contrast to the horse and its mechanical components. <span class="highlight-sentence" data-quarter="0">The overall composition of the image suggests a blend of organic and mechanical elements, creating a unique and intriguing visual.</span>
         </p>
         <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px;">
-          <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto;"/>
-          <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto;"/>
-          <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto;"/>
-          <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto;"/>
+          <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto; transition: width 0.2s ease, border 0.2s ease;"/>
+          <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto; transition: width 0.2s ease, border 0.2s ease;"/>
+          <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto; transition: width 0.2s ease, border 0.2s ease;"/>
+          <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="width: 16%; max-width: 300px; height: auto; transition: width 0.2s ease, border 0.2s ease;"/>
         </div>
       </div>
       </div>
@@ -298,6 +298,11 @@
     image.addEventListener('mouseenter', function() {
       const color = quarterColors[index];
       if (color) {
+        // Enlarge the image and add border
+        image.style.width = '20%';
+        image.style.border = '3px solid ' + color;
+
+        // Highlight corresponding sentences
         highlightSentences.forEach(function(span) {
           const quarter = parseInt(span.getAttribute('data-quarter'), 10);
           if (quarter === index) {
@@ -308,6 +313,11 @@
     });
 
     image.addEventListener('mouseleave', function() {
+      // Reset image style
+      image.style.width = '16%';
+      image.style.border = 'none';
+
+      // Reset text color
       highlightSentences.forEach(function(span) {
         span.style.color = '#666';
       });
