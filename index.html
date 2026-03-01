@@ -405,17 +405,13 @@
 
   // Pagination event listeners
   document.getElementById('teaser-prev').addEventListener('click', function() {
-    if (currentPage > 0) {
-      currentPage--;
-      renderTeaserPage(currentPage);
-    }
+    currentPage = (currentPage - 1 + teaserSamples.length) % teaserSamples.length;
+    renderTeaserPage(currentPage);
   });
 
   document.getElementById('teaser-next').addEventListener('click', function() {
-    if (currentPage < teaserSamples.length - 1) {
-      currentPage++;
-      renderTeaserPage(currentPage);
-    }
+    currentPage = (currentPage + 1) % teaserSamples.length;
+    renderTeaserPage(currentPage);
   });
 
   // Dot click event listeners
