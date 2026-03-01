@@ -102,7 +102,7 @@
         <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px; align-items: flex-start;">
           <div class="teaser-image-wrapper" style="text-align: center;">
             <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 1px; font-size: 2rem;">Component 0</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 0</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center;">
             <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain; transition: transform 0.2s ease, border 0.2s ease;"/>
@@ -110,12 +110,18 @@
           </div>
           <div class="teaser-image-wrapper" style="text-align: center;">
             <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 3px; font-size: 2rem;">Component 2</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 2</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center;">
             <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 4px; font-size: 2rem;">Component 3</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 3</p>
           </div>
+        </div>
+        <!-- Pagination controls -->
+        <div id="teaser-pagination" style="margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 20px;">
+          <button id="teaser-prev" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8592;</button>
+          <span id="teaser-page-indicator" style="font-size: 1rem; color: #666;">1 / 2</span>
+          <button id="teaser-next" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8594;</button>
         </div>
       </div>
       </div>
@@ -298,10 +304,6 @@
 </footer>
 
 <script>
-  const teaserImages = document.querySelectorAll('.teaser-sample-image');
-  const highlightSentences = document.querySelectorAll('.highlight-sentence');
-  const teaserLabels = document.querySelectorAll('.teaser-label');
-
   const quarterColors = {
     0: '#EE220C',
     1: '#FEAE00',
@@ -309,47 +311,118 @@
     3: '#0076BA'
   };
 
-  teaserImages.forEach(function(image, index) {
-    image.addEventListener('mouseenter', function() {
-      const color = quarterColors[index];
-      if (color) {
-        // Enlarge the image using transform and add border
-        image.style.transform = 'scale(1.25)';
-        image.style.border = '3px solid ' + color;
-        image.style.zIndex = '10';
+  // Sample data for pagination
+  const teaserSamples = [
+    {
+      prompt: '<span class="highlight-sentence" data-quarter="0">The image presents a 3D rendering of a horse, captured in a profile view.</span> <span class="highlight-sentence" data-quarter="1">The horse is depicted in a state of motion, with its mane and tail flowing behind it.</span> <span class="highlight-sentence" data-quarter="2">The horse\'s body is composed of a network of lines and curves,</span> <span class="highlight-sentence" data-quarter="3">suggesting a complex mechanical structure. This intricate design is further emphasized by the presence of gears and other mechanical components, which are integrated into the horse\'s body. The background of the image is a dark blue, providing a stark contrast to the horse and its mechanical components.</span> <span class="highlight-sentence" data-quarter="0">The overall composition of the image suggests a blend of organic and mechanical elements, creating a unique and intriguing visual.</span>',
+      images: ['./static/images/sample_0_0.pdf', './static/images/sample_0_1.pdf', './static/images/sample_0_2.pdf', './static/images/sample_0_3.pdf']
+    },
+    {
+      prompt: '<span class="highlight-sentence" data-quarter="0"> A hyper-detailed, macro shot of a human eye,</span> <span class="highlight-sentence" data-quarter="1"> presented not as an organ of sight, but as a gateway to a lost world of intricate craftsmanship.</span> <span class="highlight-sentence" data-quarter="0"> The iris is a masterfully crafted, antique horological mechanism,</span> <span class="highlight-sentence" data-quarter="3"> a complex universe of miniature, interlocking gears and cogs made from polished brass, copper, and tarnished silver.</span> <span class="highlight-sentence" data-quarter="2"> Each metallic piece is exquisitely detailed, with tiny, functional teeth that seem to pulse with a slow, rhythmic, and almost imperceptible life.</span> <span class="highlight-sentence" data-quarter="3"> The vibrant color of the iris is replaced by the warm, metallic sheen of the gears,</span> <span class="highlight-sentence" data-quarter="0"> with ruby and sapphire jewels embedded as tiny, gleaming pivots.</span> <span class="highlight-sentence" data-quarter="2"> At the center, the pupil is not a void but the deep, dark face of a miniature clock, its impossibly thin, filigreed hands frozen at a moment of profound significance.</span> <span class="highlight-sentence" data-quarter="3"> The delicate, thread-like veins in the sclera are reimagined as fine, coiling copper wires, connecting the central mechanism to the unseen power source at the edge of the frame.</span> <span class="highlight-sentence" data-quarter="2"> The entire piece is captured under a soft, focused light that highlights the metallic textures and casts deep, dramatic shadows within the complex machinery, suggesting immense depth. The background is a stark, velvety black, ensuring nothing distracts from the mesmerizing, mechanical soul of the eye.</span>',
+      images: ['./static/images/sample_1_0.pdf', './static/images/sample_1_1.pdf', './static/images/sample_1_2.pdf', './static/images/sample_1_3.pdf']
+    }
+  ];
 
-        // Highlight corresponding label
+  let currentPage = 0;
+
+  function renderTeaserPage(pageIndex) {
+    const sample = teaserSamples[pageIndex];
+    const promptEl = document.getElementById('teaser-prompt');
+    const imagesContainer = document.getElementById('teaser-images-container');
+    const pageIndicator = document.getElementById('teaser-page-indicator');
+
+    // Update prompt
+    promptEl.innerHTML = sample.prompt;
+
+    // Update images
+    imagesContainer.innerHTML = sample.images.map((src, i) => `
+      <div class="teaser-image-wrapper" style="text-align: center;">
+        <img src="${src}" class="teaser-sample-image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain; transition: transform 0.2s ease, border 0.2s ease;"/>
+        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem; color: #666;">Component ${i}</p>
+      </div>
+    `).join('');
+
+    // Update page indicator
+    pageIndicator.textContent = `${pageIndex + 1} / ${teaserSamples.length}`;
+
+    // Re-bind event listeners
+    bindHoverEvents();
+  }
+
+  function bindHoverEvents() {
+    const teaserImages = document.querySelectorAll('.teaser-sample-image');
+    const highlightSentences = document.querySelectorAll('.highlight-sentence');
+    const teaserLabels = document.querySelectorAll('.teaser-label');
+
+    teaserImages.forEach(function(image, index) {
+      image.addEventListener('mouseenter', function() {
+        const color = quarterColors[index];
+        if (color) {
+          image.style.transform = 'scale(1.25)';
+          image.style.border = '3px solid ' + color;
+          image.style.zIndex = '10';
+
+          if (teaserLabels[index]) {
+            teaserLabels[index].style.color = color;
+          }
+
+          highlightSentences.forEach(function(span) {
+            const quarter = parseInt(span.getAttribute('data-quarter'), 10);
+            if (quarter === index) {
+              span.style.color = color;
+            }
+          });
+        }
+      });
+
+      image.addEventListener('mouseleave', function() {
+        image.style.transform = 'scale(1)';
+        image.style.border = 'none';
+        image.style.zIndex = '1';
+
         if (teaserLabels[index]) {
-          teaserLabels[index].style.color = color;
+          teaserLabels[index].style.color = '#666';
         }
 
-        // Highlight corresponding sentences
         highlightSentences.forEach(function(span) {
-          const quarter = parseInt(span.getAttribute('data-quarter'), 10);
-          if (quarter === index) {
-            span.style.color = color;
-          }
+          span.style.color = '#666';
         });
-      }
-    });
-
-    image.addEventListener('mouseleave', function() {
-      // Reset image style
-      image.style.transform = 'scale(1)';
-      image.style.border = 'none';
-      image.style.zIndex = '1';
-
-      // Reset label color
-      if (teaserLabels[index]) {
-        teaserLabels[index].style.color = '#666';
-      }
-
-      // Reset text color
-      highlightSentences.forEach(function(span) {
-        span.style.color = '#666';
       });
     });
+  }
+
+  // Pagination event listeners
+  document.getElementById('teaser-prev').addEventListener('click', function() {
+    if (currentPage > 0) {
+      currentPage--;
+      renderTeaserPage(currentPage);
+    }
   });
+
+  document.getElementById('teaser-next').addEventListener('click', function() {
+    if (currentPage < teaserSamples.length - 1) {
+      currentPage++;
+      renderTeaserPage(currentPage);
+    }
+  });
+
+  // Add hover effects to pagination buttons
+  const prevBtn = document.getElementById('teaser-prev');
+  const nextBtn = document.getElementById('teaser-next');
+
+  [prevBtn, nextBtn].forEach(function(btn) {
+    btn.addEventListener('mouseenter', function() {
+      this.style.borderColor = '#333';
+      this.style.color = '#333';
+    });
+    btn.addEventListener('mouseleave', function() {
+      this.style.borderColor = '#ccc';
+      this.style.color = '#666';
+    });
+  });
+
+  // Initial render
+  bindHoverEvents();
 </script>
 </body>
 </html>
