@@ -97,11 +97,14 @@
     <div class="hero-body">
       <div style="text-align: center; margin-top: 2rem;">
         <p id="teaser-prompt" style="font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
-          <span class="highlight-sentence">The image presents a 3D rendering of a horse, captured in a profile view.</span> The horse is depicted in a state of motion, with its mane and tail flowing behind it. The horse's body is composed of a network of lines and curves, suggesting a complex mechanical structure. This intricate design is further emphasized by the presence of gears and other mechanical components, which are integrated into the horse's body. The background of the image is a dark blue, providing a stark contrast to the horse and its mechanical components. <span class="highlight-sentence">The overall composition of the image suggests a blend of organic and mechanical elements, creating a unique and intriguing visual.</span>
+          <span class="highlight-sentence" data-quarter="0">The image presents a 3D rendering of a horse, captured in a profile view.</span> The horse is depicted in a state of motion, with its mane and tail flowing behind it. The horse's body is composed of a network of lines and curves, suggesting a complex mechanical structure. This intricate design is further emphasized by the presence of gears and other mechanical components, which are integrated into the horse's body. The background of the image is a dark blue, providing a stark contrast to the horse and its mechanical components. <span class="highlight-sentence" data-quarter="3">The overall composition of the image suggests a blend of organic and mechanical elements, creating a unique and intriguing visual.</span>
         </p>
-        <img id="teaser-image" src="./static/images/sample_0.pdf"
-             class="interpolation-image"
-             style="width: 50%; max-width: 1200px; height: auto; display: block; margin: 0 auto;"/>
+        <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px;">
+          <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="width: 24%; max-width: 300px; height: auto;"/>
+          <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="width: 24%; max-width: 300px; height: auto;"/>
+          <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="width: 24%; max-width: 300px; height: auto;"/>
+          <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="width: 24%; max-width: 300px; height: auto;"/>
+        </div>
       </div>
       </div>
   </div>
@@ -283,28 +286,39 @@
 </footer>
 
 <script>
-  const teaserImage = document.getElementById('teaser-image');
+  const teaserContainer = document.getElementById('teaser-images-container');
   const highlightSentences = document.querySelectorAll('.highlight-sentence');
 
-  if (teaserImage && highlightSentences.length > 0) {
-    teaserImage.addEventListener('mousemove', function(e) {
-      const rect = this.getBoundingClientRect();
+  if (teaserContainer && highlightSentences.length > 0) {
+    teaserContainer.addEventListener('mousemove', function(e) {
+      const rect = teaserContainer.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
       const percentage = (x / width) * 100;
 
-      if (percentage >= 0 && percentage <= 25) {
-        highlightSentences.forEach(function(span) {
-          span.style.color = '#e74c3c';
-        });
-      } else {
-        highlightSentences.forEach(function(span) {
-          span.style.color = '#666';
-        });
+      // Determine which quarter (0, 1, 2, or 3)
+      let currentQuarter = -1;
+      if (percentage >= 0 && percentage < 25) {
+        currentQuarter = 0;
+      } else if (percentage >= 25 && percentage < 50) {
+        currentQuarter = 1;
+      } else if (percentage >= 50 && percentage < 75) {
+        currentQuarter = 2;
+      } else if (percentage >= 75 && percentage <= 100) {
+        currentQuarter = 3;
       }
+
+      highlightSentences.forEach(function(span) {
+        const quarter = parseInt(span.getAttribute('data-quarter'), 10);
+        if (currentQuarter === quarter) {
+          span.style.color = '#e74c3c';
+        } else {
+          span.style.color = '#666';
+        }
+      });
     });
 
-    teaserImage.addEventListener('mouseleave', function() {
+    teaserContainer.addEventListener('mouseleave', function() {
       highlightSentences.forEach(function(span) {
         span.style.color = '#666';
       });
