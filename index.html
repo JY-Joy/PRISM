@@ -120,7 +120,11 @@
         <!-- Pagination controls -->
         <div id="teaser-pagination" style="margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 20px;">
           <button id="teaser-prev" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8592;</button>
-          <span id="teaser-page-indicator" style="font-size: 1rem; color: #666;">1 / 3</span>
+          <div id="teaser-dots" style="display: flex; gap: 8px;">
+            <span class="teaser-dot" data-page="0" style="width: 10px; height: 10px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.2s ease;"></span>
+            <span class="teaser-dot" data-page="1" style="width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s ease;"></span>
+            <span class="teaser-dot" data-page="2" style="width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s ease;"></span>
+          </div>
           <button id="teaser-next" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8594;</button>
         </div>
       </div>
@@ -333,7 +337,7 @@
     const sample = teaserSamples[pageIndex];
     const promptEl = document.getElementById('teaser-prompt');
     const imagesContainer = document.getElementById('teaser-images-container');
-    const pageIndicator = document.getElementById('teaser-page-indicator');
+    const dots = document.querySelectorAll('.teaser-dot');
 
     // Update prompt
     promptEl.innerHTML = sample.prompt;
@@ -346,8 +350,10 @@
       </div>
     `).join('');
 
-    // Update page indicator
-    pageIndicator.textContent = `${pageIndex + 1} / ${teaserSamples.length}`;
+    // Update dots
+    dots.forEach(function(dot, i) {
+      dot.style.background = i === pageIndex ? '#333' : '#ccc';
+    });
 
     // Re-bind event listeners
     bindHoverEvents();
@@ -410,6 +416,15 @@
       currentPage++;
       renderTeaserPage(currentPage);
     }
+  });
+
+  // Dot click event listeners
+  document.querySelectorAll('.teaser-dot').forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      const page = parseInt(this.getAttribute('data-page'), 10);
+      currentPage = page;
+      renderTeaserPage(currentPage);
+    });
   });
 
   // Add hover effects to pagination buttons
