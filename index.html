@@ -303,6 +303,7 @@
         // Enlarge the image using transform and add border
         image.style.transform = 'scale(1.25)';
         image.style.border = '3px solid ' + color;
+        image.style.zIndex = '10';
 
         // Highlight corresponding sentences
         highlightSentences.forEach(function(span) {
@@ -318,6 +319,7 @@
       // Reset image style
       image.style.transform = 'scale(1)';
       image.style.border = 'none';
+      image.style.zIndex = '1';
 
       // Reset text color
       highlightSentences.forEach(function(span) {
