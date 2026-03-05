@@ -101,23 +101,23 @@
         </p>
         <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px; align-items: flex-start;">
           <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-            <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 0</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-            <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 1</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-            <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 2</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-            <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 3</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-            <img src="./static/images/samples_0.pdf" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/samples_0.pdf" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Combined</p>
           </div>
         </div>
@@ -352,13 +352,13 @@
     // Update images
     let imagesHtml = sample.images.map((src, i) => `
       <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-        <img src="${src}" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+        <img src="${src}" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
         <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component ${i}</p>
       </div>
     `).join('');
     imagesHtml += `
       <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
-        <img src="${sample.combined}" class="teaser-sample-image" style="height: 400px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
+        <img src="${sample.combined}" class="teaser-sample-image" style="height: 600px; width: auto; object-fit: scale-down; transition: transform 0.2s ease, border 0.2s ease;"/>
         <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Combined</p>
       </div>
     `;
