@@ -346,7 +346,7 @@
     imagesContainer.innerHTML = sample.images.map((src, i) => `
       <div class="teaser-image-wrapper" style="text-align: center; position: relative;">
         <img src="${src}" class="teaser-sample-image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain; transition: transform 0.2s ease, border 0.2s ease;"/>
-        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem; color: #666;">Component ${i}</p>
+        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component ${i}</p>
       </div>
     `).join('');
 
@@ -393,7 +393,7 @@
         wrapper.style.zIndex = '1';
 
         if (teaserLabels[index]) {
-          teaserLabels[index].style.color = '#666';
+          teaserLabels[index].style.color = '';
         }
 
         highlightSentences.forEach(function(span) {
