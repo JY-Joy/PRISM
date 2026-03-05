@@ -100,23 +100,23 @@
           <span class="highlight-sentence" data-quarter="0">The image presents a 3D rendering of a horse, captured in a profile view.</span> <span class="highlight-sentence" data-quarter="1">The horse is depicted in a state of motion, with its mane and tail flowing behind it.</span> <span class="highlight-sentence" data-quarter="2">The horse's body is composed of a network of lines and curves,</span> <span class="highlight-sentence" data-quarter="3">suggesting a complex mechanical structure. This intricate design is further emphasized by the presence of gears and other mechanical components, which are integrated into the horse's body. The background of the image is a dark blue, providing a stark contrast to the horse and its mechanical components.</span> <span class="highlight-sentence" data-quarter="0">The overall composition of the image suggests a blend of organic and mechanical elements, creating a unique and intriguing visual.</span>
         </p>
         <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px; align-items: stretch;">
-          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
             <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 0</p>
           </div>
-          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
             <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 1</p>
           </div>
-          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
             <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 2</p>
           </div>
-          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
             <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 3</p>
           </div>
-          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+          <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
             <img src="./static/images/samples_0.pdf" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Combined</p>
           </div>
@@ -351,13 +351,13 @@
 
     // Update images
     let imagesHtml = sample.images.map((src, i) => `
-      <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+      <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
         <img src="${src}" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
         <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component ${i}</p>
       </div>
     `).join('');
     imagesHtml += `
-      <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 600px;">
+      <div class="teaser-image-wrapper" style="text-align: center; position: relative; height: 400px;">
         <img src="${sample.combined}" class="teaser-sample-image" style="height: 100%; width: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
         <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Combined</p>
       </div>
