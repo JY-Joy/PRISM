@@ -364,6 +364,18 @@
     `;
     imagesContainer.innerHTML = imagesHtml;
 
+    // Set Combined image height to match component images
+    setTimeout(function() {
+      const wrappers = document.querySelectorAll('.teaser-image-wrapper');
+      if (wrappers.length >= 5) {
+        const componentHeight = wrappers[0].offsetHeight;
+        wrappers[4].style.height = componentHeight + 'px';
+        const combinedImg = wrappers[4].querySelector('img');
+        combinedImg.style.height = '100%';
+        combinedImg.style.width = 'auto';
+      }
+    }, 100);
+
     // Update dots
     dots.forEach(function(dot, i) {
       dot.style.background = i === pageIndex ? '#333' : '#ccc';
