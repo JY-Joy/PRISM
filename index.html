@@ -387,7 +387,7 @@
         const componentIndex = isCombined ? -1 : index;
         const color = isCombined ? null : quarterColors[componentIndex];
 
-        image.style.transform = 'scale(1.25)';
+        if (!isCombined) image.style.transform = 'scale(1.25)';
         if (color) {
           image.style.border = '3px solid ' + color;
           if (teaserLabels[index]) {
