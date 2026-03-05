@@ -101,23 +101,23 @@
         </p>
         <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px; align-items: flex-start;">
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
-            <img src="./static/images/sample_0_0.pdf" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_0.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 0</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
-            <img src="./static/images/sample_0_1.pdf" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_1.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 1</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
-            <img src="./static/images/sample_0_2.pdf" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_2.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 2</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
-            <img src="./static/images/sample_0_3.pdf" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/sample_0_3.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Component 3</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 32%;">
-            <img src="./static/images/samples_0.pdf" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
+            <img src="./static/images/samples_0.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
             <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2rem;">Combined</p>
           </div>
         </div>
@@ -188,7 +188,7 @@
           </p>
         </div>
           <div style="text-align: center;">
-            <img src="./static/images/motivation.pdf"
+            <img src="./static/images/motivation.png"
                  class="interpolation-image"
                  style="max-width: 90%; height: auto; display: block; margin: 0 auto;"/>
             <p style="text-align: center;">Compositional Long Prompt Decomposition</p>
@@ -212,7 +212,7 @@
           </p>
         </div>
         <div style="text-align: center;">
-          <img src="./static/images/architecture.pdf"
+          <img src="./static/images/architecture.png"
                class="interpolation-image"
                style="max-width: 90%; height: auto; display: block; margin: 0 auto;"/>
           <p style="text-align: center;">PRISM Architecture Overview</p>
@@ -242,7 +242,7 @@
           </p>
         </div>
         <div style="text-align: center;">
-          <img src="./static/images/token_ablation.pdf"
+          <img src="./static/images/token_ablation.png"
                class="interpolation-image"
                style="max-width: 80%; height: auto; display: block; margin: 0 auto;"/>
           <p style="text-align: center;">Performance across different prompt lengths</p>
@@ -257,7 +257,7 @@
           </p>
         </div>
         <div style="text-align: center;">
-          <img src="./static/images/samples.pdf"
+          <img src="./static/images/samples.png"
                class="interpolation-image"
                style="width: 80%; max-width: 140%; margin-left: 10%; height: auto; display: block;"/>
           <p style="text-align: center;">Generated samples across different model architectures</p>
@@ -323,18 +323,18 @@
   const teaserSamples = [
     {
       prompt: '<span class="highlight-sentence" data-quarter="0">The image presents a 3D rendering of a horse, captured in a profile view.</span> <span class="highlight-sentence" data-quarter="1">The horse is depicted in a state of motion, with its mane and tail flowing behind it.</span> <span class="highlight-sentence" data-quarter="2">The horse\'s body is composed of a network of lines and curves,</span> <span class="highlight-sentence" data-quarter="3">suggesting a complex mechanical structure. This intricate design is further emphasized by the presence of gears and other mechanical components, which are integrated into the horse\'s body. The background of the image is a dark blue, providing a stark contrast to the horse and its mechanical components.</span> <span class="highlight-sentence" data-quarter="0">The overall composition of the image suggests a blend of organic and mechanical elements, creating a unique and intriguing visual.</span>',
-      combined: './static/images/samples_0.pdf',
-      images: ['./static/images/sample_0_0.pdf', './static/images/sample_0_1.pdf', './static/images/sample_0_2.pdf', './static/images/sample_0_3.pdf']
+      combined: './static/images/samples_0.png',
+      images: ['./static/images/sample_0_0.png', './static/images/sample_0_1.png', './static/images/sample_0_2.png', './static/images/sample_0_3.png']
     },
     {
       prompt: '<span class="highlight-sentence" data-quarter="0"> A hyper-detailed, macro shot of a human eye,</span> <span class="highlight-sentence" data-quarter="1"> presented not as an organ of sight, but as a gateway to a lost world of intricate craftsmanship.</span> <span class="highlight-sentence" data-quarter="0"> The iris is a masterfully crafted, antique horological mechanism,</span> <span class="highlight-sentence" data-quarter="3"> a complex universe of miniature, interlocking gears and cogs made from polished brass, copper, and tarnished silver.</span> <span class="highlight-sentence" data-quarter="2"> Each metallic piece is exquisitely detailed, with tiny, functional teeth that seem to pulse with a slow, rhythmic, and almost imperceptible life.</span> <span class="highlight-sentence" data-quarter="3"> The vibrant color of the iris is replaced by the warm, metallic sheen of the gears,</span> <span class="highlight-sentence" data-quarter="0"> with ruby and sapphire jewels embedded as tiny, gleaming pivots.</span> <span class="highlight-sentence" data-quarter="2"> At the center, the pupil is not a void but the deep, dark face of a miniature clock, its impossibly thin, filigreed hands frozen at a moment of profound significance.</span> <span class="highlight-sentence" data-quarter="1"> The delicate, thread-like veins in the sclera are reimagined as fine, coiling copper wires,</span> <span class="highlight-sentence" data-quarter="3">connecting the central mechanism to the unseen power source at the edge of the frame.</span> <span class="highlight-sentence" data-quarter="2"> The entire piece is captured under a soft, focused light that highlights the metallic textures and casts deep, dramatic shadows within the complex machinery, suggesting immense depth. The background is a stark, velvety black, ensuring nothing distracts from the mesmerizing, mechanical soul of the eye.</span>',
-      combined: './static/images/samples_1.pdf',
-      images: ['./static/images/sample_1_0.pdf', './static/images/sample_1_1.pdf', './static/images/sample_1_2.pdf', './static/images/sample_1_3.pdf']
+      combined: './static/images/samples_1.png',
+      images: ['./static/images/sample_1_0.png', './static/images/sample_1_1.png', './static/images/sample_1_2.png', './static/images/sample_1_3.png']
     },
     {
       prompt: '<span class="highlight-sentence" data-quarter="0">A sleek, enigmatic feline, a cat of indeterminate breed, is the central figure, poised in a state of serene contemplation.</span> <span class="highlight-sentence" data-quarter="3">Its body is not of flesh and bone, but meticulously sculpted from a complex lattice of polished, interlocking obsidian shards. Each piece is perfectly fitted against the next,</span> <span class="highlight-sentence" data-quarter="1">creating a mosaic of deep, lustrous black that absorbs the light. The cat\'s form is defined by the sharp, clean edges of these volcanic glass fragments, giving its natural curves a subtle, geometric undertone.</span> <span class="highlight-sentence" data-quarter="3">Glimmering veins of molten gold run through the cracks between the shards, glowing with a soft, internal heat that pulses rhythmically, like a slow heartbeat.</span> <span class="highlight-sentence" data-quarter="1">These golden rivers trace the contours of the cat\'s muscles and skeleton, outlining its elegant spine, the delicate structure of its paws, and the graceful curve of its tail.</span> <span class="highlight-sentence" data-quarter="0">Its eyes are two brilliant, round-cut rubies, catching an unseen light source and casting a faint, crimson glow. The whiskers are impossibly thin strands of spun platinum, fanning out from its muzzle with metallic precision.</span> <span class="highlight-sentence" data-quarter="2">The entire figure rests upon a simple, unadorned, and dimly lit surface, ensuring that all focus remains on the cat\'s extraordinary construction—a masterful fusion of natural grace and exquisite, dark craftsmanship.</span>',
-      combined: './static/images/samples_2.pdf',
-      images: ['./static/images/sample_2_0.pdf', './static/images/sample_2_1.pdf', './static/images/sample_2_2.pdf', './static/images/sample_2_3.pdf']
+      combined: './static/images/samples_2.png',
+      images: ['./static/images/sample_2_0.png', './static/images/sample_2_1.png', './static/images/sample_2_2.png', './static/images/sample_2_3.png']
     }
   ];
 
