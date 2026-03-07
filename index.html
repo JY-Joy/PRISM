@@ -102,23 +102,23 @@
         <div id="teaser-images-container" style="display: flex; justify-content: center; gap: 10px; align-items: flex-start;">
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
             <img src="./static/images/sample_0_0.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Component 0</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Component 0</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
             <img src="./static/images/sample_0_1.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Component 1</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Component 1</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
             <img src="./static/images/sample_0_2.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Component 2</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Component 2</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
             <img src="./static/images/sample_0_3.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Component 3</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Component 3</p>
           </div>
           <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 32%;">
             <img src="./static/images/samples_0.png" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Combined</p>
+            <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Combined</p>
           </div>
         </div>
         <!-- Pagination controls -->
@@ -353,13 +353,13 @@
     let imagesHtml = sample.images.map((src, i) => `
       <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 16%;">
         <img src="${src}" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Component ${i}</p>
+        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Component ${i}</p>
       </div>
     `).join('');
     imagesHtml += `
       <div class="teaser-image-wrapper" style="text-align: center; position: relative; width: 32%;">
         <img src="${sample.combined}" class="teaser-sample-image" style="width: 100%; height: auto; transition: transform 0.2s ease, border 0.2s ease;"/>
-        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 1.5vw;">Combined</p>
+        <p class="teaser-label" style="font-family: 'Times New Roman', Times, serif; margin-top: 2px; font-size: 2.0vw;">Combined</p>
       </div>
     `;
     imagesContainer.innerHTML = imagesHtml;
