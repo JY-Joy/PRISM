@@ -194,8 +194,8 @@
             Existing methods attempt to bridge the gap between long texts and T2I training paradigms through two main strategies, both of which have significant drawbacks:
           </p>
           <ul>
-            <li>Fine-Tuning: Training the T2I model directly on long-captioned data is effective within training lengths, but extrapolating to even longer prompts remains challenging. These models also risk "catastrophic forgetting" of their pre-trained knowledge.</li>
-            <li>Projection: Mapping oversized inputs into the effective context window of pre-trained models creates an information bottleneck. This sacrifices the specific, intricate details that make long prompts compelling in the first place.</li>
+            <li><strong>Fine-Tuning:</strong> Training the T2I model directly on long-captioned data is effective within training lengths, but extrapolating to even longer prompts remains challenging. These models also risk "catastrophic forgetting" of their pre-trained knowledge.</li>
+            <li><strong>Projection:</strong> Mapping oversized inputs into the effective context window of pre-trained models creates an information bottleneck. This sacrifices the specific, intricate details that make long prompts compelling in the first place.</li>
           </ul>
         </div>
           <div style="text-align: center;">
@@ -220,8 +220,8 @@
           </p>
           <ol>
             <li><strong>Extraction:</strong> PRISM uses a lightweight, trainable decomposition module to extract constituent representations (semantic components) directly from the long-prompt encoding.</li>
-            <li>Independent Prediction: At each denoising step, the pre-trained T2I model makes independent noise predictions conditioned on each extracted textual component.</li>
-            <li>Energy-Based Conjunction: These independent outputs are then merged into a single composite score using energy-based conjunction. This guides the generation process toward an image that collectively satisfies all the detailed components.</li>
+            <li><strong>Independent Prediction:</strong> At each denoising step, the pre-trained T2I model makes independent noise predictions conditioned on each extracted textual component.</li>
+            <li><strong>Energy-Based Conjunction:</strong> These independent outputs are then merged into a single composite score using energy-based conjunction. This guides the generation process toward an image that collectively satisfies all the detailed components.</li>
           </ol>
         </div>
         <div style="text-align: center;">
@@ -240,18 +240,10 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
 
-        <h3 class="title is-4">Superior Generalization</h3>
+        <h3 class="title is-4">Improved Generalization to Long Prompts</h3>
         <div class="content has-text-justified">
           <p>
-            PRISM demonstrates superior generalization to out-of-distribution prompt lengths.
-            Unlike fine-tuning approaches that degrade performance on longer prompts beyond their training distribution,
-            PRISM's compositional nature enables it to handle arbitrarily long inputs.
-          </p>
-          <p>
-            In our experiments, PRISM consistently outperforms baseline models across all prompt length ranges,
-            with particularly strong gains on challenging long prompts—achieving 7.4% improvement on prompts over 500 tokens.
-            This generalization capability stems from decomposing long inputs into semantic components that
-            pre-trained T2I models can process effectively, regardless of total input length.
+            While fine-tuned baseline models degrade sharply on prompts exceeding their training distribution, PRISM maintains robust performance. On a challenging public benchmark, it outperforms baselines by an average of 7.4% on prompts over 500 tokens.
           </p>
         </div>
         <div style="text-align: center;">
@@ -259,6 +251,11 @@
                class="interpolation-image"
                style="max-width: 80%; height: auto; display: block; margin: 0 auto;"/>
           <p style="text-align: center;">Performance across different prompt lengths</p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            High Fidelity Without Data Loss: Unlike projection-based methods, our factorized approach maintains high fidelity to the original paragraph by safely distributing its complex semantic load across multiple dedicated components.
+          </p>
         </div>
         <div style="text-align: center;">
           <img src="./static/images/compositional_generalization.png"
@@ -270,8 +267,7 @@
         <h3 class="title is-4">Multi-Model Compatibility</h3>
         <div class="content has-text-justified">
           <p>
-            We evaluate PRISM across multiple model architectures (SD1.5, SD3, Flux, Qwen-Image),
-            demonstrating consistent performance improvements without requiring model-specific fine-tuning.
+            PRISM is a universal framework that allows pre-trained models to operate within their domain of expertise. It is compatible with varying architectures, including those using bidirectional attention (like Stable Diffusion-3.5 and FLUX) and causal language models (like Qwen-Image).
           </p>
         </div>
         <div class="container is-fluid" style="padding: 0;">
