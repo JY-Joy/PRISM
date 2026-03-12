@@ -212,15 +212,17 @@
     <!-- Method. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Method</h2>
+        <h2 class="title is-3">Our Approach</h2>
 
         <div class="content has-text-justified">
           <p>
-            PRISM consists of three main components: (1) a lightweight decomposition module that learns
-            to extract constituent representations from long-prompt encodings; (2) multiple independent
-            noise predictions for each component; and (3) energy-based conjunction to merge outputs into
-            a single noise prediction for coherent scene rendering.
+            Instead of forcing a model to process an out-of-distribution long sequence, PRISM leverages the principle of compositionality.
           </p>
+          <ol>
+            <li><strong>Extraction:</strong> PRISM uses a lightweight, trainable decomposition module to extract constituent representations (semantic components) directly from the long-prompt encoding.</li>
+            <li>Independent Prediction: At each denoising step, the pre-trained T2I model makes independent noise predictions conditioned on each extracted textual component.</li>
+            <li>Energy-Based Conjunction: These independent outputs are then merged into a single composite score using energy-based conjunction. This guides the generation process toward an image that collectively satisfies all the detailed components.</li>
+          </ol>
         </div>
         <div style="text-align: center;">
           <img src="./static/images/architecture.png"
