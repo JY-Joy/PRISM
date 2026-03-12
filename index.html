@@ -99,21 +99,21 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div style="display: flex; justify-content: center; gap: 0; margin-bottom: 1rem;">
-          <button id="abstract-short-btn" onclick="switchAbstract('short')" style="padding: 4px 14px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; background: #333; color: #fff; cursor: pointer; font-size: 0.85rem;">Short (200 words)</button>
-          <button id="abstract-long-btn" onclick="switchAbstract('long')" style="padding: 4px 14px; border: 1px solid #ccc; border-left: none; border-radius: 0 4px 4px 0; background: #fff; color: #333; cursor: pointer; font-size: 0.85rem;">Long (500 words)</button>
+          <button id="abstract-short-btn" onclick="switchAbstract('short')" style="padding: 4px 14px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; background: #fff; color: #333; cursor: pointer; font-size: 0.85rem;">Short (100 words)</button>
+          <button id="abstract-long-btn" onclick="switchAbstract('long')" style="padding: 4px 14px; border: 1px solid #ccc; border-left: none; border-radius: 0 4px 4px 0; background: #333; color: #fff; cursor: pointer; font-size: 0.85rem;">Long (200 words)</button>
         </div>
         <div class="content has-text-justified">
-          <div id="abstract-short">
+          <div id="abstract-short" style="display:none;">
             <p>
               Modern T2I models can render cinematic scenes from a few input words. However, as we continue to unleash our imagination, these models struggle to catch up with the expanded paragraph.
               This limitation stems from the fundamental limitation that T2I models are trained on images paired with concise captions that shape their prior knowledge.
             </p>
             <p>
               We introduce <strong>Prompt Refraction for Intricate Scene Modeling (PRISM)</strong>, a compositional approach that enables pre-trained T2I models to process long sequence inputs effectively.
-              By decomposing long texts into manageable components, PRISM achieves superior generalization and high-fidelity generation without requiring resource-intensive fine-tuning.
+              By decomposing long texts into manageable components, PRISM achieves superior generalization and high-fidelity generation without requiring resource intensive fine-tuning.
             </p>
           </div>
-          <div id="abstract-long" style="display:none;">
+          <div id="abstract-long">
             <p>
               While modern text-to-image (T2I) models excel at generating images from intricate prompts, they struggle to capture the key details when the inputs are descriptive paragraphs. This limitation stems from the prevalence of concise captions that shape their training distributions. Existing methods attempt to bridge this gap by either fine-tuning T2I models on long prompts, which generalizes poorly to longer lengths; or by projecting the oversize inputs into normal-prompt space and compromising fidelity.
             </p>
