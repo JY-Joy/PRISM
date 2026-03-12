@@ -99,10 +99,16 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div style="display: flex; justify-content: center; gap: 0; margin-bottom: 1rem;">
-          <button id="abstract-short-btn" onclick="switchAbstract('short')" style="padding: 4px 14px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; background: #fff; color: #333; cursor: pointer; font-size: 0.85rem;">Short (100 words)</button>
+          <button id="abstract-shortest-btn" onclick="switchAbstract('shortest')" style="padding: 4px 14px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; background: #fff; color: #333; cursor: pointer; font-size: 0.85rem;">Shortest (50 words)</button>
+          <button id="abstract-short-btn" onclick="switchAbstract('short')" style="padding: 4px 14px; border: 1px solid #ccc; border-left: none; background: #fff; color: #333; cursor: pointer; font-size: 0.85rem;">Short (100 words)</button>
           <button id="abstract-long-btn" onclick="switchAbstract('long')" style="padding: 4px 14px; border: 1px solid #ccc; border-left: none; border-radius: 0 4px 4px 0; background: #333; color: #fff; cursor: pointer; font-size: 0.85rem;">Long (200 words)</button>
         </div>
         <div class="content has-text-justified">
+          <div id="abstract-shortest" style="display:none;">
+            <p>
+              We introduce <strong>Prompt Refraction for Intricate Scene Modeling (PRISM)</strong>, a compositional approach for efficient generalization of T2I models to prompt lengths longer than the pre-trained data. PRISM decomposes the long prompts into manageable components. At each denoising step, the independent noise predictions on each of the components are merged together using energy-based composition.
+            </p>
+          </div>
           <div id="abstract-short" style="display:none;">
             <p>
               Modern T2I models can render cinematic scenes from a few input words. However, as we continue to unleash our imagination, these models struggle to catch up with the expanded paragraph.
@@ -322,12 +328,14 @@
 
 <script>
   function switchAbstract(version) {
+    document.getElementById('abstract-shortest').style.display = version === 'shortest' ? '' : 'none';
     document.getElementById('abstract-short').style.display = version === 'short' ? '' : 'none';
     document.getElementById('abstract-long').style.display = version === 'long' ? '' : 'none';
-    document.getElementById('abstract-short-btn').style.background = version === 'short' ? '#333' : '#fff';
-    document.getElementById('abstract-short-btn').style.color = version === 'short' ? '#fff' : '#333';
-    document.getElementById('abstract-long-btn').style.background = version === 'long' ? '#333' : '#fff';
-    document.getElementById('abstract-long-btn').style.color = version === 'long' ? '#fff' : '#333';
+    ['shortest', 'short', 'long'].forEach(function(v) {
+      var btn = document.getElementById('abstract-' + v + '-btn');
+      btn.style.background = version === v ? '#333' : '#fff';
+      btn.style.color = version === v ? '#fff' : '#333';
+    });
   }
 
   const quarterColors = {
