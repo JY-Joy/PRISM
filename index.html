@@ -277,24 +277,80 @@
         <div class="container is-fluid" style="padding: 0;">
         <div style="display: flex; align-items: stretch; gap: 16px;">
           <div style="flex: 1;">
-            <img src="./static/images/dit_samples_0.png" id="dit-samples-img"
-                 class="interpolation-image"
-                 style="width: 100%; height: auto; display: block;"/>
+            <img id="dit-samples-img" class="interpolation-image" style="width: 100%; height: auto; display: block;"/>
           </div>
-          <div id="dit-prompt-box" style="width: 280px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; padding: 12px; font-size: 0.85rem; line-height: 1.6; color: #444; background: #fafafa; box-sizing: border-box;">
-            An outdoor view of a painted wall with a silhouette of a black figure with no discernible age and no visible clothing details sitting under a tree and looking directly at another silhouette of a humanoid figure blowing bubbles with a bubble wand, with their arm up blowing bubbles from a bubble wand. The black figure sitting under the tree is placed in the lower left part of the image with a fedora style hat on with their elbows resting on their bent knees, the trees have curved branches with multicolored flowers and birds in various areas of the branches. The background of the image features a blue sky and a concrete area with a pool, where a lifeguard is seated on an elevated chair. The scene is framed by a black metal fence on the right side. The image is brightly lit with natural daylight, suggesting it was taken during the day, likely in the morning or afternoon. The light source appears to be front-lit, as the details of the mosaic and the lifeguard are clearly visible. The style of the image is a mosaic artwork. To the right of the painting is a black metal fence, in the fenced area is a concrete area with a pool of water in the middle, a life guard in a white tee shirt and red shorts is present on an elevated seat. The life guard has a white tee shirt and red shorts on, their back is hunched over with a whistle in their hand raised to their mouth, positioned on the right side of the image near the fence. The silhouette of a humanoid figure sitting under a tree with a fedora hat is to the left of the tree with curved branches, multicolored flowers, and birds. The silhouette of a humanoid figure blowing bubbles with a bubble wand is to the right of the tree with curved branches, multicolored flowers, and birds. The life guard in a white tee shirt and red shorts on an elevated seat is behind and to the right of the tree with curved branches, multicolored flowers, and birds. The silhouette of a humanoid figure sitting under a tree with a fedora hat is facing the silhouette of a humanoid figure blowing bubbles with a bubble wand.
-          </div>
+          <div id="dit-prompt-box" style="width: 280px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; padding: 12px; font-size: 0.85rem; line-height: 1.6; color: #444; background: #fafafa; box-sizing: border-box;"></div>
         </div>
         <p style="text-align: center;">Generated samples across different model architectures</p>
+        <!-- Pagination -->
+        <div style="margin-top: 12px; display: flex; justify-content: center; align-items: center; gap: 20px;">
+          <button id="dit-prev" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8592;</button>
+          <div id="dit-dots" style="display: flex; gap: 8px;">
+            <span class="dit-dot" data-page="0" style="width: 10px; height: 10px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.2s ease;"></span>
+            <span class="dit-dot" data-page="1" style="width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s ease;"></span>
+            <span class="dit-dot" data-page="2" style="width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s ease;"></span>
+            <span class="dit-dot" data-page="3" style="width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s ease;"></span>
+          </div>
+          <button id="dit-next" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8594;</button>
+        </div>
         </div>
         <script>
           (function() {
+            var ditSamples = [
+              {
+                img: './static/images/dit_samples_0.png',
+                prompt: 'An outdoor view of a painted wall with a silhouette of a black figure with no discernible age and no visible clothing details sitting under a tree and looking directly at another silhouette of a humanoid figure blowing bubbles with a bubble wand, with their arm up blowing bubbles from a bubble wand. The black figure sitting under the tree is placed in the lower left part of the image with a fedora style hat on with their elbows resting on their bent knees, the trees have curved branches with multicolored flowers and birds in various areas of the branches. The background of the image features a blue sky and a concrete area with a pool, where a lifeguard is seated on an elevated chair. The scene is framed by a black metal fence on the right side. The image is brightly lit with natural daylight, suggesting it was taken during the day, likely in the morning or afternoon. The light source appears to be front-lit, as the details of the mosaic and the lifeguard are clearly visible. The style of the image is a mosaic artwork. To the right of the painting is a black metal fence, in the fenced area is a concrete area with a pool of water in the middle, a life guard in a white tee shirt and red shorts is present on an elevated seat. The life guard has a white tee shirt and red shorts on, their back is hunched over with a whistle in their hand raised to their mouth, positioned on the right side of the image near the fence. The silhouette of a humanoid figure sitting under a tree with a fedora hat is to the left of the tree with curved branches, multicolored flowers, and birds. The silhouette of a humanoid figure blowing bubbles with a bubble wand is to the right of the tree with curved branches, multicolored flowers, and birds. The life guard in a white tee shirt and red shorts on an elevated seat is behind and to the right of the tree with curved branches, multicolored flowers, and birds. The silhouette of a humanoid figure sitting under a tree with a fedora hat is facing the silhouette of a humanoid figure blowing bubbles with a bubble wand.'
+              },
+              {
+                img: './static/images/dit_samples_1.png',
+                prompt: 'In this picture we can see a number of teddy bears are sitting on the wooden table top. On the right side we can see a yellow color teddy bear with a small teddy bear in front of him. To the left of the yellow teddy bear, there is a green teddy bear with a pumpkin design. Next to the green teddy bear, there is a brown teddy bear. On the right side, we can also see a pink color teddy bear. In the lower left part of the image, there is a white teddy bear with a purple ribbon, which has a soft material, plush texture, round shape, small black eyes, stitched nose, and is in a seated position with a fluffy appearance. Beside the white teddy bear with a purple ribbon, there is another white teddy bear with a \'True Love\' heart. In the lower right part of the image, there is a small white teddy bear with a red and yellow dress. In the background, we can see a computer desktop and a black mouse beside it, suggesting an indoor setting, likely a workspace or home office. The image appears to be taken indoors with soft, ambient lighting, likely from a nearby lamp or overhead light, creating a warm and cozy atmosphere. The lighting is evenly distributed, with no harsh shadows, suggesting a front-lit setup. The style of the image is a realistic photo. The green teddy bear with a pumpkin design is positioned to the left of the brown teddy bear. The yellow teddy bear with a small teddy bear in front is to the right of the brown teddy bear. The pink teddy bear is situated to the right of the yellow teddy bear. The white teddy bear with a purple ribbon is in front of the green teddy bear. The white teddy bear with a \'True Love\' heart is in front of the brown teddy bear. The small white teddy bear with a red and yellow dress is in front of the yellow teddy bear. The computer desktop and black mouse in the background are behind all the teddy bears.'
+              },
+              {
+                img: './static/images/dit_samples_2.png',
+                prompt: 'A large museum-style wall display is seen with six masks of different types, while lights and signs reflect off the glass that covers it. The background of the image is a museum-style display wall, with reflections of yellow banner-style signs and lights visible on the glass covering. The wall provides a neutral backdrop that highlights the diverse collection of masks. The image is taken indoors with artificial lighting, as evidenced by the reflections and the bright, even illumination on the masks. The light source appears to be positioned in front of the display, creating clear visibility of the masks and reflections on the glass. The style of the image is a realistic photo, capturing a museum display with reflections and lighting effects. The first mask on the top left is a white Japanese traditional mask with a small black and red bow on the top of its head, thin black eyebrows, two small red dots on the cheeks, and curvy red lips in a smile. The next mask to the right, in the upper right part of the image, is of an old man with dark, rough skin, long scraggly eyebrows and a blonde mustache. The next row of masks below, the left most one, has a small, dark brown, wrinkled skin mask with large white teeth sticking out, the eyebrows are raised in a dramatic way. The next mask in the middle, in the lower part of the image, is a vintage Chinese Beijing Opera mask with red, green, gray, white, and black markings on it. The next mask, in the lower right part of the image, is gold with an open mouth that has been twisted at the bottom to create a large, thin lip. There is also the top quarter of a mask below these that is not entirely visible, this brass mask, in the upper right part of the image, has a shape resembling a human face with a noticeable nose. The reflection on the glass shows yellow banner-style signs with black vertical text. The white Japanese traditional mask with a small black and red bow, thin black eyebrows, red cheek dots, and red lips in a smile is positioned to the top left of the mask of an old man with dark, rough skin, long scraggly eyebrows, and a blonde mustache. The small, dark brown mask with wrinkled skin, large white teeth, and raised eyebrows is located to the bottom left of the white Japanese traditional mask with a small black and red bow, thin black eyebrows, red cheek dots, and red lips in a smile. The vintage Chinese Beijing Opera mask with red, green, gray, white, and black markings is situated to the right of the small, dark brown mask with wrinkled skin, large white teeth, and raised eyebrows and below the mask of an old man with dark, rough skin, long scraggly eyebrows, and a blonde mustache. The gold mask with an open mouth and a large, thin lip is to the right of the vintage Chinese Beijing Opera mask with red, green, gray, white, and black markings. The brass mask (partially visible) is below the small, dark brown mask with wrinkled skin, large white teeth, and raised eyebrows and to the left of the gold mask with an open mouth and a large, thin lip.'
+              },
+              {
+                img: './static/images/dit_samples_3.png',
+                prompt: 'An indoor, close up shot of the side of 4 small horse toy figures placed on the side of the bathtub, with a white tile wall directly behind the horses. The background consists of a white tile wall with horizontal grout lines, providing a clean and simple backdrop for the horse toy figures. The image is well-lit with soft, even lighting, likely from an overhead indoor source, creating minimal shadows and highlighting the details of the horse figures. The light intensity appears consistent, suggesting a controlled indoor environment. The left most horse is one third of the size compared to the others. The left most horse is a small white horse with a black mane and tail, standing as a toy model in the left part of the image. The horse second to the left is a brown horse with a white and red dotted left half, with its left half of its body covered in white with red dots, also in the left part of the image. The third horse to the left is a dark brown horse with a black mane and tail, positioned between the second horse and the one on the far right. The horse all the way on the right is a light brown horse with a black mane and tail, facing to the right in the right part of the image. All the horses are facing to the right. The style of the image is a realistic photo. The small white horse with a black mane and tail is positioned to the left of the brown horse with a white and red dotted left half. The brown horse with a white and red dotted left half is between the small white horse with a black mane and tail and the dark brown horse with a black mane and tail. The dark brown horse with a black mane and tail is between the brown horse with a white and red dotted left half and the light brown horse with a black mane and tail. The light brown horse with a black mane and tail is positioned to the right of the dark brown horse with a black mane and tail.'
+              }
+            ];
+            var ditPage = 0;
             var img = document.getElementById('dit-samples-img');
             var box = document.getElementById('dit-prompt-box');
+
+            function renderDitPage(idx) {
+              img.src = ditSamples[idx].img;
+              box.textContent = ditSamples[idx].prompt;
+              document.querySelectorAll('.dit-dot').forEach(function(d, i) {
+                d.style.background = i === idx ? '#333' : '#ccc';
+              });
+            }
+
             function syncHeight() { box.style.height = img.offsetHeight + 'px'; }
             img.addEventListener('load', syncHeight);
-            if (img.complete) syncHeight();
             window.addEventListener('resize', syncHeight);
+
+            document.getElementById('dit-prev').addEventListener('click', function() {
+              ditPage = (ditPage - 1 + ditSamples.length) % ditSamples.length;
+              renderDitPage(ditPage);
+            });
+            document.getElementById('dit-next').addEventListener('click', function() {
+              ditPage = (ditPage + 1) % ditSamples.length;
+              renderDitPage(ditPage);
+            });
+            document.querySelectorAll('.dit-dot').forEach(function(d) {
+              d.addEventListener('click', function() {
+                ditPage = parseInt(this.getAttribute('data-page'), 10);
+                renderDitPage(ditPage);
+              });
+            });
+
+            [document.getElementById('dit-prev'), document.getElementById('dit-next')].forEach(function(btn) {
+              btn.addEventListener('mouseenter', function() { this.style.borderColor = '#333'; this.style.color = '#333'; });
+              btn.addEventListener('mouseleave', function() { this.style.borderColor = '#ccc'; this.style.color = '#666'; });
+            });
+
+            renderDitPage(0);
           })();
         </script>
 
