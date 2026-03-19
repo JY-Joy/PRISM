@@ -264,14 +264,14 @@
           </div>
           <div id="cg-prompt-box" style="width: 280px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; padding: 12px; font-size: 0.85rem; line-height: 1.6; color: #444; background: #fafafa; box-sizing: border-box;"></div>
         </div>
-        <!-- Pagination -->
-        <div style="margin-top: 12px; display: flex; justify-content: center; align-items: center; gap: 20px;">
-          <button id="cg-prev" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8592;</button>
-          <div style="display: flex; gap: 8px;">
-            <span class="cg-dot" data-page="0" style="width: 10px; height: 10px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.2s ease;"></span>
-            <span class="cg-dot" data-page="1" style="width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s ease;"></span>
-          </div>
-          <button id="cg-next" style="background: none; border: 2px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; color: #666; transition: all 0.2s ease;">&#8594;</button>
+        <!-- Slider -->
+        <div style="margin-top: 16px; display: flex; justify-content: center; align-items: center; gap: 12px;">
+          <span style="font-size: 0.85rem; color: #666;">200 tokens</span>
+          <input id="cg-slider" type="range" min="0" max="6" step="1" value="0" style="width: 300px; cursor: pointer;">
+          <span style="font-size: 0.85rem; color: #666;">500 tokens</span>
+        </div>
+        <div style="text-align: center; margin-top: 4px;">
+          <span id="cg-slider-label" style="font-size: 0.85rem; color: #333; font-weight: bold;">200 tokens</span>
         </div>
         </div>
         <script>
@@ -285,39 +285,24 @@
               { img: './static/images/450_tks.png', prompt: "A high-angle side view of a black Yamaha Virago motorcycle facing the right side of the image parked on an black asphalt surface. The front of the motorcycle is turned slightly toward the top right corner of the image. The fenders, the fuel tank, and the handles of the motorcycle are black. The motorcycle has a brown leather seat. The engine, exhaust pipes, and handlebar are gray silver. There is a red tail light attached to the fender over the top of the rear wheel. The Virago logo is on the side of the gas tank. The motorcycle is facing a lawn area on the side of a house visible at the top of the image. There is a patch of grass and a walkway leading to a gray door near the top right corner; there is a window on each side of the door. Two blue chairs are in the top right corner. Visible in the top left corner is the right side of the front of a gray Toyota C-HR SUV. The background features a residential setting with a gray house, a lawn, a walkway, and two blue chairs. A gray Toyota C-HR SUV is partially visible in the top left corner. The image is taken outdoors under natural daylight, with soft lighting conditions suggesting morning or late afternoon. The light source is positioned to the side, creating gentle shadows and highlighting details. The style is a realistic photo. The black Yamaha Virago motorcycle is positioned in front of the lawn area with the gray door and windows, indicating it is closer to the viewer than the house. The two blue chairs are situated to the right of the lawn area, placed on the side of the house away from the motorcycle." },
               { img: './static/images/500_tks.png', prompt: "A high-angle side view of a black Yamaha Virago motorcycle facing the right side of the image parked on an black asphalt surface. The front of the motorcycle is turned slightly toward the top right corner of the image. The fenders, the fuel tank, and the handles of the motorcycle are black. The motorcycle has a brown leather seat. The engine, exhaust pipes, and handlebar are gray silver. There is a red tail light attached to the fender over the top of the rear wheel. The Virago logo is on the side of the gas tank. The motorcycle is facing a lawn area on the side of a house visible at the top of the image. There is a patch of grass and a walkway leading to a gray door near the top right corner of the image, there is a window on each side of the door. There are two blue chairs in the top right corner of the image. Visible in the top left corner of the image is the right side of the front of a gray Toyota C-HR SUV with metallic paint, a compact SUV shape, sleek headlights, a Toyota emblem, and a modern design. The background features a residential setting with a gray house, a lawn, a walkway, and two blue chairs near the top right corner. A gray Toyota C-HR SUV is partially visible in the top left corner. The image is taken outdoors under natural daylight, with soft lighting conditions suggesting it could be morning or late afternoon. The light source is positioned to the side, creating gentle shadows and highlighting the motorcycle's details. The style of the image is a realistic photo. The black Yamaha Virago motorcycle is positioned in front of the lawn area with a gray door and windows, indicating it is closer to the viewer than the house. The gray Toyota C-HR SUV is located to the left of the black Yamaha Virago motorcycle, suggesting it is parked parallel to the motorcycle but further away from the house. The two blue chairs are situated to the right of the lawn area with a gray door and windows, showing they are placed on the side of the house away from the motorcycle and the SUV. The lawn area with a gray door and windows is between the motorcycle and the two blue chairs, establishing it as a central point in the spatial arrangement of the scene." }
             ];
-            var cgPage = 0;
             var img = document.getElementById('cg-img');
             var box = document.getElementById('cg-prompt-box');
+            var slider = document.getElementById('cg-slider');
+            var label = document.getElementById('cg-slider-label');
+            var tokens = [200, 250, 300, 350, 400, 450, 500];
 
             function renderCgPage(idx) {
               img.src = cgSamples[idx].img;
               box.textContent = cgSamples[idx].prompt;
-              document.querySelectorAll('.cg-dot').forEach(function(d, i) {
-                d.style.background = i === idx ? '#333' : '#ccc';
-              });
+              label.textContent = tokens[idx] + ' tokens';
             }
 
             function sync() { box.style.height = img.offsetHeight + 'px'; }
             img.addEventListener('load', sync);
             window.addEventListener('resize', sync);
 
-            document.getElementById('cg-prev').addEventListener('click', function() {
-              cgPage = (cgPage - 1 + cgSamples.length) % cgSamples.length;
-              renderCgPage(cgPage);
-            });
-            document.getElementById('cg-next').addEventListener('click', function() {
-              cgPage = (cgPage + 1) % cgSamples.length;
-              renderCgPage(cgPage);
-            });
-            document.querySelectorAll('.cg-dot').forEach(function(d) {
-              d.addEventListener('click', function() {
-                cgPage = parseInt(this.getAttribute('data-page'), 10);
-                renderCgPage(cgPage);
-              });
-            });
-            [document.getElementById('cg-prev'), document.getElementById('cg-next')].forEach(function(btn) {
-              btn.addEventListener('mouseenter', function() { this.style.borderColor = '#333'; this.style.color = '#333'; });
-              btn.addEventListener('mouseleave', function() { this.style.borderColor = '#ccc'; this.style.color = '#666'; });
+            slider.addEventListener('input', function() {
+              renderCgPage(parseInt(this.value));
             });
 
             renderCgPage(0);
