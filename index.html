@@ -208,8 +208,8 @@
             Existing methods attempt to bridge theis gap via two main strategies, both of which have their own trade-off:
           </p>
           <ul>
-            <li><strong>Fine-Tuning:</strong> Training the T2I model directly on long-captioned data is effective within training lengths, but extrapolating to even longer prompts remains challenging. These models also risk "catastrophic forgetting" of their pre-trained knowledge.</li>
-            <li><strong>Projection:</strong> Mapping oversized inputs into the effective context window of pre-trained models creates an information bottleneck. This sacrifices the specific, intricate details that make long prompts compelling in the first place.</li>
+            <li><strong>Fine-Tuning:</strong> Directly tuning the model on long-captioned data is effective within the tuning lengths, but extrapolating to even longer prompts remains challenging. Moreover, tuned models risk "catastrophic forgetting" of their pre-trained knowledge.</li>
+            <li><strong>Projecting:</strong> Mapping oversized inputs into the effective context window of pre-trained models. These methods introduce an information bottleneck and sacrifice the intricate details which make long prompts compelling in the first place.</li>
           </ul>
         </div>
           <div style="text-align: center;">
