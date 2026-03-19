@@ -215,7 +215,7 @@
           <div style="text-align: center;">
             <img src="./static/images/motivation.png"
                  class="interpolation-image"
-                 style="max-width: 60%; height: auto; display: block; margin: 0 auto;"/>
+                 style="max-width: 67%; height: auto; display: block; margin: 0 auto;"/>
             <p style="text-align: center;">Comparison of different Long-Text-to-Image generation strategies.</p>
           </div>
         <br/>
@@ -230,10 +230,10 @@
 
         <div class="content has-text-justified">
           <p>
-            Instead of forcing a model to process an out-of-distribution long sequence, PRISM leverages the principle of compositionality.
+            Instead of forcing a model to process an out-of-distribution sequence length, our PRISM generalizes to long prompts compositionally.
           </p>
           <ol>
-            <li><strong>Extraction:</strong> PRISM uses a lightweight, trainable decomposition module to extract constituent representations (semantic components) directly from the long-prompt encoding.</li>
+            <li><strong>Decomposing:</strong> We train a lightweight semantic decomposition module to extract constituent representations from the long-prompt encoding. This module is optimized in an unsupervised manner, with both of the text encoder and image generative model frozen.</li>
             <li><strong>Independent Prediction:</strong> At each denoising step, the pre-trained T2I model makes independent noise predictions conditioned on each extracted textual component.</li>
             <li><strong>Energy-Based Conjunction:</strong> These independent outputs are then merged into a single composite score using energy-based conjunction. This guides the generation process toward an image that collectively satisfies all the detailed components.</li>
           </ol>
