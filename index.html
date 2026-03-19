@@ -198,12 +198,13 @@
     <!-- Motivation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">The Challenge of Long-Form Prompts</h2>
+        <h2 class="title is-3">The Challenge of Long Prompts Generalization</h2>
 
         <div class="content has-text-justified">
           <p>
-            Existing methods attempt to bridge the gap between long texts and T2I training paradigms through two main strategies, both of which have significant drawbacks:
+            Large scale text-image datasets like LAION are dominated by concise, caption-like prompts, making T2I models trained on them struggle to process prompts longer than the training lengths.
           </p>
+          <p>Existing methods attempt to bridge the gap between long texts and T2I training paradigms through two main strategies, both of which have significant drawbacks:</p>
           <ul>
             <li><strong>Fine-Tuning:</strong> Training the T2I model directly on long-captioned data is effective within training lengths, but extrapolating to even longer prompts remains challenging. These models also risk "catastrophic forgetting" of their pre-trained knowledge.</li>
             <li><strong>Projection:</strong> Mapping oversized inputs into the effective context window of pre-trained models creates an information bottleneck. This sacrifices the specific, intricate details that make long prompts compelling in the first place.</li>
