@@ -216,7 +216,7 @@
             <img src="./static/images/motivation.png"
                  class="interpolation-image"
                  style="max-width: 67%; height: auto; display: block; margin: 0 auto;"/>
-            <p style="text-align: center;">Comparison of different Long-Text-to-Image generation strategies.</p>
+            <p style="text-align: center;">Comparison of different Long-Text-to-Image generation strategies</p>
           </div>
         <br/>
       </div>
@@ -233,16 +233,17 @@
             Instead of forcing a model to process an out-of-distribution sequence length, our PRISM generalizes to long prompts compositionally.
           </p>
           <ol>
-            <li><strong>Decomposing:</strong> PRISM uses a lightweight decomposition module to extract constituent representations from the long-prompt encoding.</li>
-            <li><strong>Parallel Processing:</strong> At each diffusion step, the pre-trained T2I model takes the extracted textual components as generation conditions, processing them in parallel into independent noise predictions.</li>
-            <li><strong>Energy-Based Conjunction:</strong> These outputs are then merged into a single composite score using energy-based conjunction. The composed score leads the generation process toward the distribution that collectively satisfies all the semantic components.  This module is optimized in an unsupervised manner, with both of the text encoder and image generative model frozen.</li>
+            <li><strong>Decomposing:</strong> PRISM uses a lightweight semantic decomposition module to extract constituent representations from the long-prompt encoding directly.</li>
+            <li><strong>Parallel Processing:</strong> At each diffusion step, the pre-trained T2I model takes the extracted components as generation conditions, processing them in parallel into independent noise predictions.</li>
+            <li><strong>Energy-Based Conjunction:</strong> These outputs are then merged into a single composite score using energy-based conjunction. The composed score leads the generation process toward the distribution that collectively satisfies all the semantic components.</li>
+            <li><strong>Unsupervised Training:</strong> The decomposition module is optimized with both of the text encoder and image generative model keep frozen, learning to distribute the information within pre-trained capacities.</li>
           </ol>
         </div>
         <div style="text-align: center;">
           <img src="./static/images/pipeline.gif"
                class="interpolation-image"
                style="max-width: 90%; height: auto; display: block; margin: 0 auto;"/>
-          <p style="text-align: center;">PRISM Pipeline Overview</p>
+          <p style="text-align: center;">Our compositional Long-Text-to-Image generation pipeline overview</p>
         </div>
         <br/>
       </div>
@@ -252,7 +253,7 @@
     <!-- Key Results. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-4">Improved Generalization to Long Prompts</h2>
+        <h2 class="title is-3">Improved Generalization to Long Prompts</h2>
         <div class="content has-text-justified">
           <p>
             While fine-tuned baseline models degrade sharply on prompts exceeding their training distribution, PRISM maintains robust performance. On a challenging public benchmark, it outperforms baselines by an average of 7.4% on prompts over 500 tokens.
@@ -320,7 +321,7 @@
         </script>
         <br/>
 
-        <h2 class="title is-4">Image Samples</h2>
+        <h2 class="title is-3">Generation Samples</h2>
         <div class="content has-text-justified">
           <p>
             PRISM is a universal framework that allows pre-trained models to operate within their domain of expertise. It is compatible with varying architectures, including those using bidirectional attention (like Stable Diffusion-3.5 and FLUX) and causal language models (like Qwen-Image).
