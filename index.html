@@ -234,8 +234,8 @@
           </p>
           <ol>
             <li><strong>Decomposing:</strong> We train a lightweight semantic decomposition module to extract constituent representations from the long-prompt encoding. This module is optimized in an unsupervised manner, with both of the text encoder and image generative model frozen.</li>
-            <li><strong>Independent Prediction:</strong> At each denoising step, the pre-trained T2I model makes independent noise predictions conditioned on each extracted textual component.</li>
-            <li><strong>Energy-Based Conjunction:</strong> These independent outputs are then merged into a single composite score using energy-based conjunction. This guides the generation process toward an image that collectively satisfies all the detailed components.</li>
+            <li><strong>Parallel Processing:</strong> At each diffusion step, the pre-trained T2I model takes the extracted textual components as generation conditions, processing them in parallel into independent noise predictions.</li>
+            <li><strong>Energy-Based Conjunction:</strong> These outputs are then merged into a single composite score using energy-based conjunction. The composed score leads the generation process toward the distribution that collectively satisfies all the semantic components.</li>
           </ol>
         </div>
         <div style="text-align: center;">
