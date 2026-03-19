@@ -292,7 +292,7 @@
             var tokens = [200, 250, 300, 350, 400, 450, 500];
 
             function renderCgPage(idx) {
-              img.src = cgSamples[idx].img;
+              img.src = cgSamples[idx].img + '?v=' + idx;
               box.textContent = cgSamples[idx].prompt;
               label.textContent = tokens[idx] + ' tokens';
             }
